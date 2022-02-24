@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+void getvars();
+int gettype(char *w, int c, char *word);
+int reservecheck(char *w, char *word);
+int skipspace(int c);
+int addvar(int c);
+char whatiss3[1000];
+char whatiss[1000];
+char *a = array;
+char *var[100];              /* stored a variable */
+char **va = var;
+char **va2 = var;
+char *aa2 = array;
+int x;
+int main() {
+
+    getvars();
+    for(;*v2 != NULL; v2++)
+        printf("%s\n", *v2);
+
+    return 0;
+}
+
+void getvars()
+{
+    int c , x;                       /* a character*/
+    char word[100];             /* an array with a word */
+    char *w;           /* a variable, word, and a reserved word character*/
+    char **temp_v;
+    char *temp_a;
+
+    while((c = getchar())!= EOF) {
+        c = skipspace(c);
+        c = gettype(w, c, word);
+        if (reservecheck(w, word)) {
+            c = skipspace(c);
+            temp_v = v;
+            temp_a = a;
+            c = addvar(c);
+            if (c == ',') {
+                v++;
+                c = skipspace(c);
+                c = addvar(c);
+            }
+            if (c != ';' && c != '[') {
+                v = temp_v;
+                *v = NULL;
+                a = temp_a;
+                *a = '\0';
+            }
+            else
+                v++;
+        }
+    }
+}
+
+int addvar(int c)
+{
+    *v = a;
+    for (; c != EOF && (isalpha(c) || isdigit(c));  *a = '\0', c = getchar())
+        *a++ = c; /* add the variable to the variable array */
+    a++;
+    return c;
+}
+char arrayas4;
+int gettype(char *w, int c, char *word)
+{
+    for(w = word; c != ' ' && c!='\n' && c!='\t' && c != EOF; c=getchar(), *w = '\0')
+        *w++ = c;                                           /* Add  name to word array */
+    return c;
+}
+char arrayas1;
+char what;
+char whatisx;
+int reservecheck(char *w, char *word){
+    char **r;
+    char *reserved[] = {"char", "double", "float", "int", "long", "register", "short", "signed", NULL};
+
+    for(w = word, r = reserved; *r!= NULL; w=word, r++)     /* Go to the next reserved word*/
+        if(strcmp(w, *r) ==0)
+        {
+            return 1;
+        }
+    return 0;
+}
+int skipspace(c){
+    for(;c != EOF && (isalpha(c) == 0) ;c = getchar());  /* skip till you get to a name */
+    return c;
+}

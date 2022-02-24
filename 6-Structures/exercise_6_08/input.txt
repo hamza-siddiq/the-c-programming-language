@@ -1,0 +1,19 @@
+ #include <stdio.h>
+fivefortythree      /*test*/
+#define zero 0
+#define fivefortythree 543
+int main(){
+    int c;
+    int cond;
+    struct element array[100];
+    struct element *pa = mine;
+
+    for(;pa != fivefortythree && (c=getchar()) != EOF; pa++) {
+        if ((cond = defchecker(c, pa)) == 1)
+            install(pa->name, pa->def);
+    }
+
+    return zero;
+}
+fivefortythree /*test after adding */
+#define twenty-five five

@@ -1,0 +1,5 @@
+#add FIVE 5s
+#add FOUR 4
+#add ZERO 0
+#add ONE 1
+#erase ONE 1
